@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Seema 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: #ffeef2;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    .container {
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #ff80ab;
+    }
+
+    .nickname {
+      font-size: 1.5rem;
+      color: #ff4081;
+      margin-bottom: 20px;
+    }
+
+    .slideshow {
+      position: relative;
+      max-width: 320px;
+      margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      z-index: 1;
+    }
+
+    .slideshow img {
+      width: 100%;
+      height: auto;
+      display: none;
+      transition: opacity 1s ease-in-out;
+      border-radius: 15px;
+    }
+
+    .love-letter {
+      background: #ffe4e1;
+      margin: 20px auto;
+      padding: 20px;
+      max-width: 80%;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      font-style: italic;
+      color: #d81b60;
+      font-size: 1.2rem;
+      text-align: left;
+    }
+
+    .btn-reveal {
+      margin-top: 30px;
+      padding: 12px 24px;
+      font-size: 1rem;
+      background-color: #ff80ab;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .surprise-message {
+      display: none;
+      margin-top: 20px;
+      padding: 20px;
+      background-color: #fff5f8;
+      border-radius: 15px;
+      font-size: 1.2rem;
+      color: #d81b60;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Bright Floating Heart Animation */
+    .heart {
+      position: fixed;
+      width: 20px;
+      height: 20px;
+      background: radial-gradient(circle at 30% 30%, #ff4081, #ff80ab);
+      transform: rotate(-45deg);
+      animation: floatHearts 6s linear infinite;
+      z-index: 9999;
+      top: 100vh;
+      opacity: 1;
+      pointer-events: none;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: inherit;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      top: 0;
+      left: 10px;
+    }
+
+    @keyframes floatHearts {
+      0% { transform: translateY(100vh) rotate(-45deg) scale(1); opacity: 1; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(-45deg) scale(1.5); opacity: 0.8; }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: #ffc0cb;
+      border-radius: 50%;
+      animation: sparkle 1.5s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes sparkle {
+      0% { opacity: 0; transform: scale(0.5); }
+      50% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0; transform: scale(0.5); }
+    }
+
+    .toggle-audio {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 10px;
+      background-color: #ff80ab;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <audio id="birthday-audio" autoplay loop>
+    <source src="birthday.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <div class="container">
+    <h1>Happy Birthday Seema 🎉</h1>
+    <div class="nickname">aka Puchuku 💕</div>
+
+    <div class="slideshow">
+      <img src="img1.jpeg" class="slide" style="display: block;" />
+      <img src="img2.jpeg" class="slide" />
+      <img src="img3.jpeg" class="slide" />
+      <img src="img4.jpeg" class="slide" />
+    </div>
+
+    <div class="love-letter">
+      <p>Dearest Puchuku, 💖</p>
+      <p>As I sit here thinking about you, my heart can't help but overflow with love. Your presence in my life makes every moment brighter, and I want to express just how special you are.</p>
+      <p>Here are a few little things I’ve been thinking about...</p>
+      <ul>
+        <li>YOU ARE THE BEST PART OF MY LIFE! 🍬</li>
+        <li>I LOVE YOU TO THE DISTANCE OF MOON AND BACK MUAAAAAAHHHH  😘</li>
+      </ul>
+      <p>With all my love,</p>
+      <p>Yours forever 💖</p>
+    </div>
+
+    <button class="btn-reveal" onclick="revealSurprise()">Tap for a Birthday Surprise 🎁</button>
+    <div class="surprise-message" id="surprise-message">
+      💌 Happy Birthday, my sweet Puchuku! You’re the reason I smile a little more every day. 💖
+    </div>
+  </div>
+
+  <button class="toggle-audio" onclick="toggleAudio()">🔊</button>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
+      heart.style.transform = 'scale(' + (Math.random() * 0.5 + 1) + ')';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 7000);
+    }
+
+    setInterval(createHeart, 500);
+
+    function createSparkle() {
+      const sparkle = document.createElement('div');
+      sparkle.classList.add('sparkle');
+      sparkle.style.left = Math.random() * window.innerWidth + 'px';
+      sparkle.style.top = Math.random() * window.innerHeight + 'px';
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 1500);
+    }
+
+    function revealSurprise() {
+      document.getElementById('surprise-message').style.display = 'block';
+      document.getElementById('birthday-audio').play();
+      for (let i = 0; i < 30; i++) {
+        setTimeout(createSparkle, i * 100);
+      }
+    }
+
+    let slideIndex = 0;
+    const slides = document.getElementsByClassName("slide");
+    function showSlides() {
+      for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) { slideIndex = 1; }
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(showSlides, 2500);
+    }
+    showSlides();
+
+    function toggleAudio() {
+      const audio = document.getElementById('birthday-audio');
+      if (audio.paused) {
+        audio.play();
+        document.querySelector('.toggle-audio').textContent = '🔊';
+      } else {
+        audio.pause();
+        document.querySelector('.toggle-audio').textContent = '🔇';
+      }
+    }
+  </script>
+</body>
+</html>
